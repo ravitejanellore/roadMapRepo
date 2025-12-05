@@ -20,7 +20,7 @@ def addTask(currentId):
     return tasks
 def updateTask(id):
     desc=GBL.getTextinsideQuotes(stmt,'"','"')
-    taskIndex=GBL.whereContains(id,tasks,'id')
+    taskIndex=GBL.whereContains(int(id),tasks,'id')
     tasks[taskIndex]['description']=desc
     return tasks
 def updateStatus(tasks,id,status): 
@@ -51,10 +51,11 @@ tasks=GBL.readJson(file_name)
 tasks=tasks if tasks else []
 stmt=str(input('action id description\n'))
 action=stmt.split(' ')[0]
-print(tasks if tasks else [])
 tasks=doAction(stmt,action)
 GBL.writeJson(file_name,tasks)
 print(tasks)
+
+
 
 
 
